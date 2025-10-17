@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact Us — Truth of Faith Church (TOFAC)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link id="favicon" rel="icon" type="image/png" sizes="64x64" href="">
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="description" content="Contact Truth of Faith Church (TOFAC) for service times, events, and inquiries.">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html#home" class="brand" aria-label="TOFAC home">
+        <img src="images/WhatsApp Image 2025-09-01 at 06.32.59_e0638fe7.jpg" alt="TOFAC logo" width="56" height="56" loading="eager" decoding="async">
+        <span class="brand-name">TOFAC</span>
+      </a>
+      <nav id="primary-nav" class="primary-nav" aria-label="Primary navigation">
+        <ul>
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="index.html#ministry">Our Ministry</a></li>
+          <li><a href="index.html#sermons">Sermons</a></li>
+          <li><a href="index.html#giving">Online Giving</a></li>
+          <li><a href="contact.html" aria-current="page">Contact Us</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav"><span class="visually-hidden">Toggle navigation</span>☰</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section section-alt">
+      <div class="container">
+        <h1 class="text-center reveal">Contact Us</h1>
+        <p class="text-center reveal" style="color: var(--muted)">We’d love to hear from you. Send us a message or reach out using the details below.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid-2">
+        <!-- Contact Form -->
+        <div class="card reveal">
+          <h2>Send a Message</h2>
+          <form id="contact-form" novalidate>
+            <div id="success" class="success-banner" role="status" aria-live="polite">Thank you! Your message has been sent.</div>
+            <div class="form-grid">
+              <div class="field">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required aria-required="true" autocomplete="name" placeholder="Your full name">
+                <div id="error-name" class="field-error" aria-live="polite"></div>
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required aria-required="true" autocomplete="email" placeholder="you@example.com">
+                <div id="error-email" class="field-error" aria-live="polite"></div>
+              </div>
+              <div class="field">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" required aria-required="true" placeholder="How can we help?">
+                <div id="error-subject" class="field-error" aria-live="polite"></div>
+              </div>
+              <div class="field">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required aria-required="true" placeholder="Write your message here..."></textarea>
+                <div id="error-message" class="field-error" aria-live="polite"></div>
+              </div>
+              <div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="card reveal">
+          <h2>Contact Information</h2>
+          <dl class="contact-info">
+            <dt>Address</dt>
+            <dd>Truth of Faith Church (TOFAC)</dd>
+            <dd>Igboagbowa,Ibeshe,Ikorodu,Lagos State</dd>
+            <dt>Phone</dt>
+            <dd><a href="tel:+2348036198531">+234 803 619 8531</a></dd>
+            <dt>Email</dt>
+            <dd><a href="mailto:okunadeayomide03@gmail.com">okunadeayomide03@gmail.com</a></dd>
+          </dl>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> Truth of Faith Church (TOFAC). All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Accessible nav toggle
+    const toggle = document.querySelector('.nav-toggle');
+    const header = document.querySelector('.site-header');
+    toggle.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      header.classList.toggle('open', !expanded);
+    });
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Scroll-triggered reveal animations
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const revealEls = document.querySelectorAll('.reveal');
+    if (prefersReduced) {
+      revealEls.forEach(el => el.classList.add('is-visible'));
+    } else {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+      revealEls.forEach(el => io.observe(el));
+    }
+
+    // Favicon from logo
+    (function setFaviconFromLogo() {
+      const logo = document.querySelector('.brand img');
+      const link = document.getElementById('favicon') || document.createElement('link');
+      link.rel = 'icon';
+      link.type = 'image/png';
+      link.sizes = '64x64';
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.src = logo?.src || '';
+      img.onload = () => {
+        const size = 64;
+        const canvas = document.createElement('canvas');
+        canvas.width = size;
+        canvas.height = size;
+        const ctx = canvas.getContext('2d');
+        const iw = img.width, ih = img.height;
+        const scale = Math.max(size / iw, size / ih);
+        const dw = iw * scale, dh = ih * scale;
+        const dx = (size - dw) / 2, dy = (size - dh) / 2;
+        ctx.clearRect(0, 0, size, size);
+        ctx.drawImage(img, dx, dy, dw, dh);
+        link.href = canvas.toDataURL('image/png');
+        document.head.appendChild(link);
+      };
+    })();
+
+    // Form validation
+    const form = document.getElementById('contact-form');
+    const success = document.getElementById('success');
+    const fields = {
+      name: document.getElementById('name'),
+      email: document.getElementById('email'),
+      subject: document.getElementById('subject'),
+      message: document.getElementById('message')
+    };
+    const errors = {
+      name: document.getElementById('error-name'),
+      email: document.getElementById('error-email'),
+      subject: document.getElementById('error-subject'),
+      message: document.getElementById('error-message')
+    };
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    function clearErrors() {
+      Object.values(errors).forEach(el => el.textContent = '');
+      Object.values(fields).forEach(input => input.removeAttribute('aria-invalid'));
+    }
+
+    function setError(key, msg) {
+      errors[key].textContent = msg;
+      fields[key].setAttribute('aria-invalid', 'true');
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      clearErrors();
+      let valid = true;
+      if (!fields.name.value.trim()) { setError('name', 'Please enter your name.'); valid = false; }
+      if (!fields.email.value.trim()) { setError('email', 'Please enter your email.'); valid = false; }
+      else if (!emailPattern.test(fields.email.value.trim())) { setError('email', 'Please enter a valid email address.'); valid = false; }
+      if (!fields.subject.value.trim()) { setError('subject', 'Please enter a subject.'); valid = false; }
+      if (!fields.message.value.trim()) { setError('message', 'Please enter your message.'); valid = false; }
+
+      if (valid) {
+        const name = fields.name.value.trim();
+        const email = fields.email.value.trim();
+        const subject = fields.subject.value.trim();
+        const message = fields.message.value.trim();
+
+        const emailSubject = `TOFAC Contact — ${subject}`;
+        const bodyLines = [
+          `Name: ${name}`,
+          `Email: ${email}`,
+          `Subject: ${subject}`,
+          '',
+          'Message:',
+          message
+        ];
+        const body = bodyLines.join('\r\n');
+        const mailto = `mailto:okunadeayomide03@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(body).replace(/%0A/g,'%0D%0A')}`;
+
+        success.textContent = 'Opening your mail app… Please review and send.';
+        success.classList.add('show');
+
+        const a = document.createElement('a');
+        a.href = mailto;
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      } else {
+        const firstInvalid = Object.values(fields).find(input => input.getAttribute('aria-invalid') === 'true');
+        firstInvalid?.focus();
+      }
+    });
+  </script>
+</body>
+</html>
